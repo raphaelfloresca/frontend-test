@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { Image, StyleSheet, Platform, ImageRequireSource } from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
@@ -11,7 +11,7 @@ export default function HomeScreen() {
       headerBackgroundColor={{ light: '#C9AEF4', dark: '#1D3D47' }}
       headerImage={
         <Image
-          source={require('@/assets/images/nuli.png')}
+          source={require('@/assets/images/nuli.png') as ImageRequireSource}
           style={styles.reactLogo}
         />
       }>
