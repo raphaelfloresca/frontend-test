@@ -13,10 +13,11 @@ export default function HomeScreen() {
           <TabBarIcon name="cog-outline" style={styles.icon} />
         </View>
       </View>
-      <ScrollView style={styles.content}>
-        {[...Array(100)].map((x, i) =>
-          <Text key={i}>Hello world!</Text>
-        )}
+      <ScrollView>
+        <View style={styles.titleContainer}>
+          <Text style={{ fontSize: 28, fontWeight: 'bold' }}>Full Body</Text>
+          <Text>With Candice</Text>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -30,7 +31,6 @@ const styles = StyleSheet.create({
   header: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between'
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 15,
