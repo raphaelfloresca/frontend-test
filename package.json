@@ -20,7 +20,7 @@
   "jest": {
     "preset": "jest-expo",
     "setupFilesAfterEnv": [
-      "@testing-library/react-native/extend-expect"
+      "./jest-setup.ts"
     ]
   },
   "dependencies": {
