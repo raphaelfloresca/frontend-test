@@ -3,15 +3,15 @@ import { FontSource, useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import { View } from 'react-native';
 import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/useColorScheme';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync().catch(console.error);
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
+const storybookEnabled = process.env.EXPO_PUBLIC_STORYBOOK_ENABLED === "true";
+
+const Index = () => {
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf') as FontSource,
   });
@@ -33,5 +33,21 @@ export default function RootLayout() {
         <Stack.Screen name="+not-found" />
       </Stack>
     </ThemeProvider>
-  );
+  )
 }
+
+
+let EntryPoint = Index;
+
+if (storybookEnabled) {
+  const StorybookUI = require("../.storybook").default;
+  EntryPoint = () => {
+    return (
+      <View style={{ flex: 1 }}>
+        <StorybookUI />
+      </View>
+    );
+  };
+}
+
+export default EntryPoint;
