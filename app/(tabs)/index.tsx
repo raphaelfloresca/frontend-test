@@ -1,14 +1,19 @@
-import { View, Text, Image, StyleSheet, Platform, ImageRequireSource } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { View, StyleSheet } from 'react-native';
+import WorkoutOverviewHeader from '@/components/ui/WorkoutOverviewHeader';
 
 export default function HomeScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Workout Overview</Text>
+    <View style={styles.container}>
+      <WorkoutOverviewHeader />
     </View>
-  );
+  )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+})
+

@@ -7,7 +7,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "jest",
+    "test": "jest --watchAll",
     "lint": "expo lint",
     "prepare": "husky",
     "typecheck": "tsc",
@@ -17,7 +17,10 @@
     "storybook:android": "cross-env STORYBOOK_ENABLED='true' expo start --android"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "setupFilesAfterEnv": [
+      "@testing-library/react-native/extend-expect"
+    ]
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.0",
@@ -49,7 +52,9 @@
     "@react-native-community/slider": "^4.5.2",
     "@storybook/addon-ondevice-actions": "^7.6.19",
     "@storybook/addon-ondevice-controls": "^7.6.19",
+    "@storybook/react": "^8.1.6",
     "@storybook/react-native": "^7.6.19",
+    "@testing-library/react-native": "^12.5.1",
     "@types/jest": "^29.5.12",
     "@types/react": "~18.2.45",
     "@types/react-test-renderer": "^18.0.7",
