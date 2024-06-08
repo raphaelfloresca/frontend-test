@@ -10,6 +10,9 @@ const Icon = createIconSetFromIcoMoon(
   'icomoon.ttf'
 );
 
+/**
+ * Hello!
+ */
 export default function WorkoutOverviewHeader() {
   const [fontsLoaded] = useFonts({
     IcoMoon: require('../../assets/icons/icomoon.ttf'),
