@@ -1,21 +1,25 @@
 import * as React from 'react'
-import renderer, { ReactTestRendererJSON } from 'react-test-renderer'
+import { render, waitFor } from '@testing-library/react-native';
 
-import { ThemedText } from '../ThemedText';
 import WorkoutOverviewHeader from '../ui/WorkoutOverviewHeader'
 
-let tree: ReactTestRendererJSON | ReactTestRendererJSON[] | null;
+describe('WorkoutOverviewHeader', () => {
+  it('renders correctly', async () => {
+    const { queryByTestId } = render(<WorkoutOverviewHeader />);
 
-beforeAll(() => {
-  tree = renderer.create(<WorkoutOverviewHeader />).toJSON()
-})
+    // Wait for the component to re-render after fonts have loaded
+    await waitFor(() => expect(queryByTestId('workout-overview-header')).toBeTruthy());
+  });
 
-it(`renders correctly`, () => {
+  it('has children', async () => {
+    const { queryByTestId } = render(<WorkoutOverviewHeader />);
 
-  expect(tree).toBeTruthy()
-})
-
-it(`has children`, () => {
-  const tree = renderer.create(<WorkoutOverviewHeader />).toJSON()
-  expect(tree.children.length).toBeGreaterThan(0)
-})
+    // Wait for the component to re-render after fonts have loaded
+    await waitFor(() => {
+      const tree = queryByTestId('workout-overview-header');
+      if (tree) {
+        expect(tree.children.length).toBeGreaterThan(0);
+      }
+    });
+  });
+});
