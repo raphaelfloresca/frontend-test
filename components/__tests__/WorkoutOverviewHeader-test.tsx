@@ -1,25 +1,31 @@
 import * as React from 'react'
-import { render, waitFor } from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 
 import WorkoutOverviewHeader from '../ui/WorkoutOverviewHeader'
 
-describe('WorkoutOverviewHeader', () => {
-  it('renders correctly', async () => {
-    const { queryByTestId } = render(<WorkoutOverviewHeader />);
+// Mock the icon
+jest.mock("../ui/NuliIcon", () => {
+  return {
+    __esModule: true,
+    default: () => {
+      return <></>;
+    },
+  };
+});
 
-    // Wait for the component to re-render after fonts have loaded
-    await waitFor(() => expect(queryByTestId('workout-overview-header')).toBeTruthy());
+// Mock the useFonts hook
+jest.mock('expo-font', () => ({
+  useFonts: jest.fn(() => [true]),
+}));
+
+describe('WorkoutOverviewHeader', () => {
+  it('renders correctly', () => {
+    const { getByTestId } = render(<WorkoutOverviewHeader />)
+    expect(getByTestId("workout-overview-header")).toBeOnTheScreen();
   });
 
-  it('has children', async () => {
-    const { queryByTestId } = render(<WorkoutOverviewHeader />);
-
-    // Wait for the component to re-render after fonts have loaded
-    await waitFor(() => {
-      const tree = queryByTestId('workout-overview-header');
-      if (tree) {
-        expect(tree.children.length).toBeGreaterThan(0);
-      }
-    });
+  it('has children', () => {
+    const { getByTestId } = render(<WorkoutOverviewHeader />)
+    expect(getByTestId("workout-overview-header")).not.toBeEmptyElement();
   });
 });
