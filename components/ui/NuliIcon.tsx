@@ -24,7 +24,7 @@ export default function NuliIcon({ name }: NuliIconProps) {
   }
 
   return (
-    <Icon accessibilityLabel={name} name={name} style={styles.icon} />
+    <Icon testID="test-icon" name={name} style={styles.icon} />
   )
 }
 
