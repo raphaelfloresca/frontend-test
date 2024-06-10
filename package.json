@@ -24,6 +24,8 @@
     ]
   },
   "dependencies": {
+    "@expo-google-fonts/open-sans": "^0.2.3",
+    "@expo-google-fonts/work-sans": "^0.2.3",
     "@expo/vector-icons": "^14.0.0",
     "@react-navigation/native": "^6.0.2",
     "cross-env": "^7.0.3",

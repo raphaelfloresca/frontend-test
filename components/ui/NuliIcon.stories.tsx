@@ -13,18 +13,21 @@ type Story = StoryObj<typeof meta>
 
 export const Heart: Story = {
   args: {
-    name: 'heart'
+    name: 'heart',
+    color: '#262c45'
   },
 }
 
 export const Back: Story = {
   args: {
-    name: 'back'
+    name: 'back',
+    color: '#262c45'
   }
 }
 
 export const Cog: Story = {
   args: {
-    name: 'cog'
+    name: 'cog',
+    color: '#262c45'
   }
 }

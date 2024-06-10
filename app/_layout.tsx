@@ -5,6 +5,8 @@ import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react'
 import 'react-native-reanimated'
 import Constants from "expo-constants"
+import { WorkSans_600SemiBold } from '@expo-google-fonts/work-sans';
+import { OpenSans_400Regular } from '@expo-google-fonts/open-sans';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync().catch(console.error)
@@ -12,6 +14,8 @@ SplashScreen.preventAutoHideAsync().catch(console.error)
 function RootLayout() {
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf') as FontSource,
+    WorkSans_600SemiBold,
+    OpenSans_400Regular
   });
 
   useEffect(() => {
