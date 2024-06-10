@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native'
 import NuliIcon from './NuliIcon'
 
 /**
- * Hello!
+ * Returns the application header of the whole app
  */
 export default function WorkoutOverviewHeader() {
   return (
@@ -11,6 +11,8 @@ export default function WorkoutOverviewHeader() {
       <View style={styles.header}>
         <NuliIcon name="back" />
         <View style={styles.iconsRight}>
+          <NuliIcon name="heart" color="#F6727B" />
+          <NuliIcon name="cog" />
         </View>
       </View>
     </View>
