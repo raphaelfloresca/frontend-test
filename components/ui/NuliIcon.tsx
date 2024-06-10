@@ -5,16 +5,24 @@ import { StyleSheet } from 'react-native'
 
 type NuliIconProps = {
   name: "heart" | "back" | "cog"
+  color?: string
 }
 
-// Use the Nuli icons
+/**
+ * Generate the icons from IcoMoon
+ */
 const Icon = createIconSetFromIcoMoon(
   require('../../assets/icons/selection.json'),
   'IcoMoon',
   'icomoon.ttf'
 );
 
-export default function NuliIcon({ name }: NuliIconProps) {
+/**
+ * Return the icons as a component
+ *
+ * @param name - the name of the particular icon in the icon set
+ */
+export default function NuliIcon({ name, color }: NuliIconProps) {
   const [fontsLoaded] = useFonts({
     IcoMoon: require('../../assets/icons/icomoon.ttf'),
   });
@@ -24,13 +32,10 @@ export default function NuliIcon({ name }: NuliIconProps) {
   }
 
   return (
-    <Icon testID="test-icon" name={name} style={styles.icon} />
+    <Icon testID="test-icon" name={name} style={{ padding: 10, fontSize: 24, color: color }} />
   )
 }
 
-const styles = StyleSheet.create({
-  icon: {
-    padding: 12,
-    color: '#262C45'
-  },
-})
+NuliIcon.defaultProps = {
+  color: '#262c45'
+}

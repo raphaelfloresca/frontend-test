@@ -16,3 +16,11 @@ describe('NuliIcon', () => {
     expect(icon).toBeOnTheScreen();
   });
 });
+
+describe('NuliIcon', () => {
+  it('renders correctly when color prop is passed', async () => {
+    const { findByTestId } = render(<NuliIcon name="heart" color="blue" />)
+    const icon = await findByTestId("test-icon")
+    expect(icon).toHaveStyle({ color: 'blue' })
+  });
+});
