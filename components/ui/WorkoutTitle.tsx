@@ -10,7 +10,7 @@ export default function WorkoutTitle() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 32,
+    // marginTop: 32,
     marginLeft: 55,
     paddingTop: 32,
     borderLeftWidth: 1,

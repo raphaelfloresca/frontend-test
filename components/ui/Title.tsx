@@ -26,7 +26,8 @@ export default function Title({ titleText }: TitleProps) {
 const styles = StyleSheet.create({
   titleContainer: {
     paddingHorizontal: 40,
-    gap: 12
+    gap: 12,
+    marginBottom: 32
   },
   titleHeading: {
     fontFamily: 'WorkSans_600SemiBold',

@@ -4,8 +4,9 @@ import { createIconSetFromIcoMoon } from '@expo/vector-icons';
 import { StyleSheet } from 'react-native'
 
 type NuliIconProps = {
-  name: "heart" | "back" | "cog"
-  color?: string
+  name: "heart" | "back" | "cog" | "swap"
+  color?: string,
+  fontSize?: number
 }
 
 /**
@@ -22,7 +23,7 @@ const Icon = createIconSetFromIcoMoon(
  *
  * @param name - the name of the particular icon in the icon set
  */
-export default function NuliIcon({ name, color }: NuliIconProps) {
+export default function NuliIcon({ name, color, fontSize }: NuliIconProps) {
   const [fontsLoaded] = useFonts({
     IcoMoon: require('../../assets/icons/icomoon.ttf'),
   });
@@ -32,10 +33,11 @@ export default function NuliIcon({ name, color }: NuliIconProps) {
   }
 
   return (
-    <Icon testID="test-icon" name={name} style={{ padding: 10, fontSize: 24, color: color }} />
+    <Icon testID="test-icon" name={name} style={{ fontSize: fontSize, color: color }} />
   )
 }
 
 NuliIcon.defaultProps = {
-  color: '#262c45'
+  color: '#262c45',
+  fontSize: 24
 }

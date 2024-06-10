@@ -9,10 +9,16 @@ export default function WorkoutOverviewHeader() {
   return (
     <View testID="workout-overview-header">
       <View style={styles.header}>
-        <NuliIcon name="back" />
+        <View style={{ padding: 10 }}>
+          <NuliIcon name="back" />
+        </View>
         <View style={styles.iconsRight}>
-          <NuliIcon name="heart" color="#F6727B" />
-          <NuliIcon name="cog" />
+          <View style={{ padding: 10 }}>
+            <NuliIcon name="heart" color="#F6727B" />
+          </View>
+          <View style={{ padding: 10 }}>
+            <NuliIcon name="cog" />
+          </View>
         </View>
       </View>
     </View>

@@ -1,15 +1,20 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text, ScrollView } from 'react-native';
 import WorkoutOverviewHeader from '@/components/ui/WorkoutOverviewHeader';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Title from '@/components/ui/Title';
 import WorkoutTitle from '@/components/ui/WorkoutTitle';
+import WorkoutContainer from '@/components/ui/WorkoutContainer';
 
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
-      <WorkoutOverviewHeader />
-      <Title titleText='Full Body' />
-      <WorkoutTitle />
+      <ScrollView stickyHeaderIndices={[0]}>
+        <WorkoutOverviewHeader />
+        <Title titleText='Full Body' />
+        <WorkoutContainer />
+        <WorkoutTitle />
+        <WorkoutContainer />
+      </ScrollView>
     </SafeAreaView>
   )
 }
