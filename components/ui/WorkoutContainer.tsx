@@ -21,6 +21,7 @@ const GET_CIRCUIT = gql`
         exercise {
           id
           name
+          imageIndex
         }
       }
     }
@@ -30,8 +31,7 @@ const GET_CIRCUIT = gql`
 
 /**
  * Return the container which holds the individual exercises.
- * Exercise swapping is handld here.
- *
+ * Exercise swapping is handled here.
  */
 export default function WorkoutContainer() {
   // Get GraphQL data
@@ -40,7 +40,7 @@ export default function WorkoutContainer() {
   // Set exerciseList state
   const [exerciseList, setExerciseList] = useState<Exercise[]>([])
 
-  // Refs to store allExercises and startingExercises
+  // Refs to store allExercises and startingExercises defined in useEffect
   const allExercisesRef = useRef<Exercise[]>([]);
   const startingExercisesRef = useRef<Exercise[]>([]);
 
@@ -83,6 +83,7 @@ export default function WorkoutContainer() {
           name={exercise.name}
           sets={exercise.sets}
           reps={exercise.reps}
+          imageIndex={exercise.imageIndex}
           swapWithExerciseId={exercise.swapWithExerciseId}
           handleSwap={handleSwap}
         />

@@ -1,5 +1,6 @@
 export type Exercise = {
   id: number
+  imageIndex: number
   name: string
   sets: string
   reps: string

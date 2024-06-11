@@ -6,6 +6,7 @@ import PopupMenu from './PopupMenu';
 
 type ExerciseContainerProps = {
   name: string
+  imageIndex: number
   sets: string
   reps: string
   swapWithExerciseId?: number
@@ -17,20 +18,23 @@ type ExerciseContainerProps = {
  * 
  * @param props
  * @param props.name
+ * @param props.imageIndex
  * @param props.sets
  * @param props.reps
  * @param props.swapWithExerciseId - the exerciseId to swap to
  * @param handleSwap - a callback function to allow swap of parent to be triggered in the child
  */
-export default function ExerciseContainer({ name, sets, reps, swapWithExerciseId, handleSwap }: ExerciseContainerProps) {
+export default function ExerciseContainer({ name, imageIndex, sets, reps, swapWithExerciseId, handleSwap }: ExerciseContainerProps) {
   // TODO: Load actual exercise photo assets
   const [assets, error] = useAssets([
-    require('../../assets/images/splash.png'),
+    require('../../assets/images/cable-row.png'),
+    require('../../assets/images/barbell-row.png'),
+    require('../../assets/images/seated-row.png'),
   ]);
 
   return (
     <View style={styles.exerciseContainer}>
-      {assets ? <Image source={{ uri: assets[0].uri }} style={styles.exerciseImage} /> : null}
+      {assets ? <Image source={{ uri: assets[imageIndex].uri }} style={styles.exerciseImage} /> : null}
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', flex: 1 }}>
         <View style={styles.exerciseInfo}>
           <Text style={styles.exerciseTitle}>{name}</Text>

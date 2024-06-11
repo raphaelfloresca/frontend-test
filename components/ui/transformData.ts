@@ -12,6 +12,7 @@ export default function transformData(data) {
   const exercises = exerciseMappings.map(mapping => ({
     id: mapping.exercise.id,
     name: mapping.exercise.name,
+    imageIndex: mapping.exercise.imageIndex,
     sets: mapping.sets,
     reps: mapping.reps,
     weight: mapping.weight,
