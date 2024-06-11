@@ -14,7 +14,7 @@ export default function WorkoutOverviewHeader() {
         </View>
         <View style={styles.iconsRight}>
           <View style={{ padding: 10 }}>
-            <NuliIcon name="heart" color="#F6727B" />
+            <NuliIcon name="heart" color="green" />
           </View>
           <View style={{ padding: 10 }}>
             <NuliIcon name="cog" />
