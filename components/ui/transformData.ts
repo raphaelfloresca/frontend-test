@@ -1,3 +1,6 @@
+/**
+ * Transform the data returned by the GraphQL endpoint to a format that's easier to query.
+ */
 export default function transformData(data) {
   // Extract circuit name
   const circuitName = data.getCircuit.name;

@@ -31,3 +31,31 @@ export const Cog: Story = {
     color: '#262c45'
   }
 }
+
+export const Swap: Story = {
+  args: {
+    name: 'swap',
+    color: '#262c45'
+  }
+}
+
+export const History: Story = {
+  args: {
+    name: 'history',
+    color: '#262c45'
+  }
+}
+
+export const MenuInfo: Story = {
+  args: {
+    name: 'menu-info',
+    color: '#262c45'
+  }
+}
+
+export const Prefill: Story = {
+  args: {
+    name: 'prefill',
+    color: '#262c45'
+  }
+}

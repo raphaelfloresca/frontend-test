@@ -1,9 +1,13 @@
-import { View, Text, StyleSheet, Button } from "react-native"
+import { View, Text, StyleSheet } from "react-native"
 import ExerciseContainer from "./ExerciseContainer";
 import { useQuery, gql } from '@apollo/client';
 import transformData from "./transformData";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { getStartingElements, getAlternateElements, Exercise } from "./workoutContainerHelpers";
 
+/**
+ * Query the particular circuit needed
+ */
 const GET_CIRCUIT = gql`
 {
   getCircuit(id: 6) {
@@ -24,52 +28,49 @@ const GET_CIRCUIT = gql`
 }
 `
 
-type Exercise = {
-  name: string
-  sets: string
-  reps: string
-  weight?: string
-  swapWithExerciseId?: number | undefined
-}
-
-const getStartingElements = (array) => {
-  const firstArray = array.filter(item => item.swapWithExerciseId !== null).slice(0, 1)
-  const secondArray = array.filter(item => item.swapWithExerciseId === null)
-
-  return [...firstArray, ...secondArray];
-}
-
-const getAlternateElements = (array) => {
-  const firstArray = array.filter(item => item.swapWithExerciseId !== null).slice(1, 2)
-  const secondArray = array.filter(item => item.swapWithExerciseId === null)
-
-  return [...firstArray, ...secondArray];
-}
-
+/**
+ * Return the container which holds the individual exercises.
+ * Exercise swapping is handld here.
+ *
+ */
 export default function WorkoutContainer() {
   // Get GraphQL data
   const { loading, error, data } = useQuery(GET_CIRCUIT);
+
+  // Set exerciseList state
+  const [exerciseList, setExerciseList] = useState<Exercise[]>([])
+
+  // Refs to store allExercises and startingExercises
+  const allExercisesRef = useRef<Exercise[]>([]);
+  const startingExercisesRef = useRef<Exercise[]>([]);
+
+  // Effect to update exerciseList when data changes
+  useEffect(() => {
+    // Check if data is available and transform it
+    if (data) {
+      const transformedData = transformData(data);
+      allExercisesRef.current = transformedData.exercises;
+      startingExercisesRef.current = getStartingElements(allExercisesRef.current);
+      // Set exerciseList to startingExercises
+      setExerciseList(startingExercisesRef.current);
+    }
+  }, [data]);
 
   // Handle loading and errors
   if (loading) return <Text>Loading...</Text>;
   if (error) return <Text>Error : {error.message}</Text>;
 
-  // Tidy data into a form that's easier to query
-  const transformedData = transformData(data)
-  const allExercises = transformedData.exercises
+  // Get the exercises to swap to 
+  const alternateExercises = getAlternateElements(allExercisesRef.current);
 
-  // Get the exercises to render first
-  const startingExercises = getStartingElements(allExercises)
-  const alternateExercises = getAlternateElements(allExercises)
-
-  const [exerciseList, setExerciseList] = useState(startingExercises)
-
+  // Manage the toggling of exercises
   const handleSwap = () => {
-    if (exerciseList.some((exercise) => exercise.id === 7)) {
+    // TODO: Handle this logic by running a comparison to the original array
+    if (exerciseList.some((exercise: Exercise) => exercise.id === 7)) {
       const newList = alternateExercises
       setExerciseList(newList)
     } else {
-      const newList = startingExercises
+      const newList = startingExercisesRef.current
       setExerciseList(newList)
     }
   };

@@ -1,10 +1,9 @@
 import React from 'react';
 import { useFonts } from 'expo-font';
 import { createIconSetFromIcoMoon } from '@expo/vector-icons';
-import { StyleSheet } from 'react-native'
 
 type NuliIconProps = {
-  name: "heart" | "back" | "cog" | "swap"
+  name: "heart" | "back" | "cog" | "swap" | "history" | "menu-info" | "prefill"
   color?: string,
   fontSize?: number
 }
@@ -21,7 +20,10 @@ const Icon = createIconSetFromIcoMoon(
 /**
  * Return the icons as a component
  *
- * @param name - the name of the particular icon in the icon set
+ * @param props - can customise the which icon is called, its color and font size
+ * @param props.name - which icon is rendered
+ * @param props.color
+ * @param props.fontSize
  */
 export default function NuliIcon({ name, color, fontSize }: NuliIconProps) {
   const [fontsLoaded] = useFonts({

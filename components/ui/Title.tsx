@@ -7,7 +7,14 @@ type TitleProps = {
   titleText: string
 }
 
+/**
+ * Return the workout title
+ *
+ * @param props
+ * @param props.title
+ */
 export default function Title({ titleText }: TitleProps) {
+  // Return assets at runtime
   const [assets, error] = useAssets([
     require('../../assets/images/candice-icon.png'),
   ]);

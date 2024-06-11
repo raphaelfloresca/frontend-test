@@ -12,6 +12,9 @@ import { OpenSans_400Regular, OpenSans_700Bold } from '@expo-google-fonts/open-s
 SplashScreen.preventAutoHideAsync().catch(console.error)
 
 function RootLayout() {
+  /**
+   * Fonts required for mockup
+   */
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf') as FontSource,
     WorkSans_600SemiBold,
@@ -30,6 +33,7 @@ function RootLayout() {
   }
 
   return (
+    // Disable theme switching for now
     <ThemeProvider value={DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
