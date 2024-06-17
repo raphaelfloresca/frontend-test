@@ -1,5 +1,12 @@
 # Welcome to the mobile nüli test app
 
+## Notes (Please read)
+
+- Please replace the URL in the `app/(tabs)/index.tsx` file in the Apollo client with your machine's URL.
+- Please make sure to run the accompanying [backend repo](https://github.com/raphaelfloresca/backend-test) to be able to fetch data.
+- You can run `npm run storybook` to see Storybook, and `npm run test-watch` to run jest in watch mode.
+- Use `nvm` and the `latest` version to ensure that this works as expected.
+
 For full instructions on what we'd like you to do please visit our [official developer test page](https://www.notion.so/nuliapp/Nuli-Mid-Level-Mobile-Developer-Test-83f53a4746824e4a8f924b8b9fc13d69#ac50bed4e72645a2a5b066ff67bb7a93).
 
 ## Get started

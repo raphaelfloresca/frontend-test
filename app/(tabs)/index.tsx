@@ -1,70 +1,46 @@
-import { Image, StyleSheet, Platform, ImageRequireSource } from 'react-native';
+import { StyleSheet, Text, ScrollView } from 'react-native';
+import WorkoutOverviewHeader from '@/components/ui/WorkoutOverviewHeader';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Title from '@/components/ui/Title';
+import WorkoutTitle from '@/components/ui/WorkoutTitle';
+import WorkoutContainer from '@/components/ui/WorkoutContainer';
+import { MenuProvider } from 'react-native-popup-menu';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+/*
+ * Query the data from the GraphQL endpoing
+ */
+const client = new ApolloClient({
+  uri: 'http://192.168.18.4:3000/graphql',
+  cache: new InMemoryCache(),
+});
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#C9AEF4', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/nuli.png') as ImageRequireSource}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
-  );
+    // Provide the data across the whole component tree
+    <ApolloProvider client={client}>
+      {/* Allow menus to be called across the whole component tree */}
+      <MenuProvider>
+        {/* Don't render at the phone notch */}
+        <SafeAreaView style={styles.container}>
+          {/* Allow the header to be sticky */}
+          <ScrollView stickyHeaderIndices={[0]}>
+            <WorkoutOverviewHeader />
+            <Title titleText='Full Body' />
+            {/* Two workout containers to showcase scroll functionality */}
+            <WorkoutContainer />
+            <WorkoutTitle title="Triset • 4 rounds" />
+            <WorkoutContainer />
+          </ScrollView>
+        </SafeAreaView>
+      </MenuProvider>
+    </ApolloProvider>
+  )
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    backgroundColor: '#fff'
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
+})
